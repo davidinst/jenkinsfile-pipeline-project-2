@@ -4,16 +4,20 @@ pipeline {
 
     stages{
 
-        stage('run') {
-
+        stage('build') {
             steps {
-                echo 'welcome to jenkins'
-                sh 'python3 --version'
-                sh 'python3 pipeline.py'
-                sh 'echo $JENKINS_HOME'
-                sh "echo $JENKINS_HOME"
-            }
+                echo 'compiling the source code'
+                sh 'javac Hello.java'
+                sh 'ls'
 
+            }
+        }
+
+        stage('run') {
+            steps {
+                echo 'Running the app'
+                sh 'java Hello'
+            }
         }
 
     }
